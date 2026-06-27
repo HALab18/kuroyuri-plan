@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黒百合ヒュッテ登山プラン 2025.7.20-21</title>
+<style>
+  :root {
+    --bg: #f7f5f0; --surface: #ffffff; --border: #ddd8ce; --text: #1a1a18; --sub: #6b6860;
+    --accent: #2d6a4f; --accent-light: #e8f4ee; --accent2: #b5451b; --accent2-light: #fdf0eb;
+    --warn: #7b5e00; --warn-light: #fdf8e8; --night: #1e2d4a; --night-light: #eef1f8;
+    --font-sans: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+    --font-mono: 'SF Mono', 'Menlo', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 15px; line-height: 1.7; }
+  header { background: var(--night); color: #fff; padding: 48px 24px 40px; text-align: center; }
+  header .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #8fa8c8; margin-bottom: 12px; }
+  header h1 { font-size: clamp(24px, 5vw, 40px); font-weight: 700; line-height: 1.25; margin-bottom: 10px; }
+  header .sub { font-size: 14px; color: #a0b4cc; margin-bottom: 24px; }
+  header .badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  header .badge { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: #ccdaeb; }
+  .yamap-bar { background: var(--accent); color: #fff; text-align: center; padding: 14px 24px; }
+  .yamap-bar a { color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; }
+  .yamap-bar a:hover { text-decoration: underline; }
+  main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sub); border-top: 2px solid var(--accent); padding-top: 10px; margin-bottom: 20px; margin-top: 48px; }
+  .timeline { display: flex; flex-direction: column; }
+  .tl-item { display: grid; grid-template-columns: 80px 1fr; gap: 0 20px; position: relative; }
+  .tl-item::before { content: ''; position: absolute; left: 80px; top: 28px; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item:last-child::before { display: none; }
+  .tl-time { text-align: right; font-size: 13px; font-weight: 700; font-family: var(--font-mono); color: var(--night); padding-top: 20px; }
+  .tl-body { padding: 16px 0 20px 20px; position: relative; }
+  .tl-body::before { content: ''; position: absolute; left: -5px; top: 22px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .tl-item.night .tl-time { color: #5577aa; }
+  .tl-item.night .tl-body::before { background: #5577aa; }
+  .tl-item.key .tl-body::before { width: 14px; height: 14px; left: -7px; background: var(--accent2); }
+  .tl-item.key .tl-time { color: var(--accent2); }
+  .tl-item.food .tl-body::before { background: var(--accent); width: 14px; height: 14px; left: -7px; }
+  .tl-item.food .tl-time { color: var(--accent); }
+  .tl-label { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+  .tl-desc { font-size: 13px; color: var(--sub); line-height: 1.6; }
+  .tl-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 6px; margin-bottom: 4px; }
+  .tag-night { background: var(--night-light); color: var(--night); }
+  .tag-food { background: var(--accent-light); color: var(--accent); }
+  .tag-summit { background: var(--accent2-light); color: var(--accent2); }
+  .route-box { background: var(--night-light); border: 1px solid #c0ccdd; border-radius: 8px; padding: 12px 16px; margin: 8px 0 4px; font-size: 13px; line-height: 2; }
+  .route-box .road { font-weight: 700; color: var(--night); }
+  .route-arrow { color: var(--sub); margin: 0 4px; }
+  .day-divider { margin: 32px 0 24px; display: flex; align-items: center; gap: 14px; }
+  .day-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .day-divider-label { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--sub); white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--sub); padding: 8px 12px; border-bottom: 2px solid var(--border); background: var(--bg); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .td-right { text-align: right; font-family: var(--font-mono); font-size: 13px; }
+  .td-label { color: var(--sub); font-size: 12px; margin-top: 2px; }
+  .td-total { font-weight: 700; background: var(--accent-light); }
+  .td-hal { background: var(--night-light); }
+  .td-nodiscount { background: #fff5f5; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; }
+  .card-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .card-links { margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .card-link { font-size: 12px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); border-radius: 4px; padding: 3px 10px; }
+  .card-link:hover { background: var(--accent-light); }
+  .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin-top: 12px; }
+  .card-meta-item { font-size: 12px; }
+  .card-meta-key { color: var(--sub); font-size: 11px; }
+  .notice { background: var(--warn-light); border-left: 3px solid #c49000; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; color: var(--warn); margin-top: 12px; line-height: 1.65; }
+  .notice.red { background: #fff0f0; border-left-color: #cc3333; color: #992222; }
+  .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  @media (max-width: 540px) { .cost-grid { grid-template-columns: 1fr; } }
+  .cost-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .cost-card.hal { border-top: 3px solid var(--night); }
+  .cost-card.member { border-top: 3px solid var(--accent); }
+  .cost-who { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--sub); margin-bottom: 6px; }
+  .cost-amount { font-size: 32px; font-weight: 700; font-family: var(--font-mono); line-height: 1.1; margin-bottom: 4px; }
+  .cost-card.hal .cost-amount { color: var(--night); }
+  .cost-card.member .cost-amount { color: var(--accent); }
+  .cost-note { font-size: 11px; color: var(--sub); }
+  .lunch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  @media (max-width: 760px) { .lunch-grid { grid-template-columns: 1fr; } }
+  .lunch-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+  .lunch-card.rec { border-top: 3px solid var(--accent); }
+  .lunch-card.alt { border-top: 3px solid #8a7055; }
+  .lunch-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+  .badge-rec { background: var(--accent-light); color: var(--accent); }
+  .badge-alt { background: #f5f0e8; color: #8a7055; }
+  .lunch-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .lunch-detail { font-size: 12px; color: var(--sub); line-height: 1.7; }
+  .links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 8px; }
+  .link-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; color: inherit; display: block; }
+  .link-card:hover { border-color: var(--accent); }
+  .link-card-title { font-weight: 700; font-size: 13px; margin-bottom: 3px; color: var(--accent); }
+  .link-card-desc { font-size: 11px; color: var(--sub); line-height: 1.5; }
+  .link-card-url { font-size: 10px; color: #aaa; margin-top: 4px; font-family: var(--font-mono); }
+  footer { text-align: center; font-size: 11px; color: var(--sub); padding: 24px; border-top: 1px solid var(--border); }
+  .parking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  @media (max-width: 480px) { .parking-grid { grid-template-columns: 1fr; } }
+  .parking-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .parking-card.primary { border-top: 3px solid var(--accent); }
+  .parking-card.secondary { border-top: 3px solid var(--warn); }
+  .parking-name { font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+  .parking-row { display: flex; justify-content: space-between; font-size: 12px; border-bottom: 1px solid var(--border); padding: 4px 0; }
+  .parking-row:last-child { border-bottom: none; }
+  .parking-key { color: var(--sub); }
+  @media (max-width: 600px) { .tl-item { grid-template-columns: 60px 1fr; } .tl-time { font-size: 11px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">登山プラン 2025</div>
+  <h1>黒百合ヒュッテ 1泊2日</h1>
+  <div class="sub">仙台 → 郡山（2名ピックアップ）→ 白駒池 → 黒百合ヒュッテ → 高見石小屋</div>
+  <div class="badges">
+    <span class="badge">仙台宮城IC 22:30出発</span>
+    <span class="badge">7月20日（日）登山1日目</span>
+    <span class="badge">7月21日（月・海の日）下山</span>
+    <span class="badge">3名</span>
+    <span class="badge">北八ヶ岳</span>
+  </div>
+</header>
+
+<div class="yamap-bar">
+  <a href="https://yamap.com/plans/code/8aImqgwzsghw7bY1ERs5FvOycrgYHSXUWg_GrYer3lhB9_yFX48ClUx3ZALkKOemNq4" target="_blank" rel="noopener">🗺️ YAMAP 登山計画・登山届 ／ メンバー全員で確認してください　計画を開く ↗</a>
+</div>
+
+<main>
+
+  <div class="section-title">タイムスケジュール</div>
+
+  <!-- 移動日 -->
+  <div class="day-divider">
+    <div class="day-divider-line"></div>
+    <div class="day-divider-label">移動日 ── 7月19日（土）22:30 → 7月20日（日）早朝</div>
+    <div class="day-divider-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item night">
+      <div class="tl-time">22:30</div>
+      <div class="tl-body">
+        <div class="tl-label">仙台出発</div>
+        <div class="tl-desc">
+          <span class="tl-tag tag-night">深夜割引</span>0〜4時走行分に30%割引適用
+          <div class="route-box">
+            <span class="road">東北道</span><span class="route-arrow">→</span>
+            宇都宮JCT<span class="route-arrow">→</span>
+            <span class="road">北関東道</span><span class="route-arrow">→</span>
+            藤岡JCT<span class="route-arrow">→</span>
+            <span class="road">上信越道</span><span class="route-arrow">→</span>
+            佐久小諸JCT<span class="route-arrow">→</span>
+            <span class="road">中部横断道</span><span class="route-arrow">→</span>
+            八千穂高原IC
+          </div>
+          郡山〜八千穂高原 約405km
+        </div>
+      </div>
+    </div>
+    <div class="tl-item night">
+      <div class="tl-time">23:45着<br>24:30発</div>
+      <div class="tl-body">
+        <div class="tl-label">郡山 ── 2名ピックアップ</div>
+        <div class="tl-desc">郡山IC付近　23:45着・15分待機<br><strong>24:00 集合（待ち合わせ時刻）</strong> → 24:30 出発</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">4:30〜<br>5:30</div>
+      <div class="tl-body">
+        <div class="tl-label">白駒池入口駐車場 到着・車中仮眠</div>
+        <div class="tl-desc">第1（80台）満車なら第2（100台）へ。到着後仮眠・朝食（車内）　郡山出発24:30 → 3時間20分 → 3:50着</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">6:45</div>
+      <div class="tl-body">
+        <div class="tl-label">起床・準備・朝食（車内）</div>
+        <div class="tl-desc">登山届提出・準備完了</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 登山1日目 -->
+  <div class="day-divider" style="margin-top:32px;">
+    <div class="day-divider-line"></div>
+    <div class="day-divider-label">登山1日目 ── 7月20日（日）</div>
+    <div class="day-divider-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item key">
+      <div class="tl-time">7:30</div>
+      <div class="tl-body">
+        <div class="tl-label">🥾 登山開始　白駒池入口（2,090m）</div>
+        <div class="tl-desc">登山届提出済み確認　日の出 04:43</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">7:49〜<br>7:50</div>
+      <div class="tl-body">
+        <div class="tl-label">白駒荘</div>
+        <div class="tl-desc">白駒池畔　小休憩（2分）</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">9:07</div>
+      <div class="tl-body">
+        <div class="tl-label">ニュウ（2,352m）</div>
+        <div class="tl-desc">通過</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:08</div>
+      <div class="tl-body">
+        <div class="tl-label">中山峠</div>
+        <div class="tl-desc">通過（2分）</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">10:16</div>
+      <div class="tl-body">
+        <div class="tl-label">🏠 黒百合ヒュッテ 到着（2,410m）</div>
+        <div class="tl-desc">
+          チェックイン・荷物預け　90分休憩（11:46まで）<br>
+          <span class="tl-tag tag-food">🍲 ビーフシチュー</span>ランチ 10:00〜14:00 ✅<br>
+          単品 1,300円 ／ セット（パン or ライス）1,600円
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">11:46</div>
+      <div class="tl-body">
+        <div class="tl-label">黒百合ヒュッテ 出発</div>
+        <div class="tl-desc">（16分）</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">11:54</div>
+      <div class="tl-body">
+        <div class="tl-label">中山峠 通過</div>
+        <div class="tl-desc"></div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">12:59〜<br>13:19</div>
+      <div class="tl-body">
+        <div class="tl-label"><span class="tl-tag tag-summit">⛰ 東天狗岳（2,640m）</span></div>
+        <div class="tl-desc">通過</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">13:19〜<br>13:49</div>
+      <div class="tl-body">
+        <div class="tl-label"><span class="tl-tag tag-summit">⛰ 西天狗岳（2,646m）</span></div>
+        <div class="tl-desc">30分休憩</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">13:49〜<br>15:04</div>
+      <div class="tl-body">
+        <div class="tl-label">西天狗岳 → 東天狗岳 → 中山峠</div>
+        <div class="tl-desc">（47分）</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">15:12</div>
+      <div class="tl-body">
+        <div class="tl-label">🏠 黒百合ヒュッテ 帰着</div>
+        <div class="tl-desc">夕食・就寝</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice">⚡ 夏の八ヶ岳は午後に雷雨が発生しやすい。天狗岳が14〜16時台になるため、<strong>当日朝の天気予報を必ず確認</strong>すること。午後雷の予報がある場合は天狗岳を翌朝に回す判断も必要。</div>
+
+  <!-- 登山2日目 -->
+  <div class="day-divider" style="margin-top:40px;">
+    <div class="day-divider-line"></div>
+    <div class="day-divider-label">登山2日目 ── 7月21日（月・海の日）</div>
+    <div class="day-divider-line"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">〜7:50</div>
+      <div class="tl-body">
+        <div class="tl-label">朝食・出発準備</div>
+        <div class="tl-desc">2食付きプランは小屋食</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">8:00</div>
+      <div class="tl-body">
+        <div class="tl-label">🥾 黒百合ヒュッテ 出発</div>
+        <div class="tl-desc">高見石方面へ</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">8:08</div>
+      <div class="tl-body">
+        <div class="tl-label">中山峠</div>
+        <div class="tl-desc">通過（3分）</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">8:38〜<br>8:48</div>
+      <div class="tl-body">
+        <div class="tl-label">中山（2,496m）</div>
+        <div class="tl-desc">10分休憩</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">9:53</div>
+      <div class="tl-body">
+        <div class="tl-label">🏠 高見石小屋 到着</div>
+        <div class="tl-desc">到着後すぐ高見石（展望岩）へ</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">9:55〜<br>9:57</div>
+      <div class="tl-body">
+        <div class="tl-label">高見石（展望岩）</div>
+        <div class="tl-desc">岩の上から白駒池を一望</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">9:57〜<br>10:37</div>
+      <div class="tl-body">
+        <div class="tl-label"><span class="tl-tag tag-food">🍩 揚げパン</span>　高見石小屋 休憩</div>
+        <div class="tl-desc">名物揚げパン 1,100円（セット）　きな粉・ココア・抹茶・チーズ・黒ごまの5種類<br>販売10:00〜のため9:57〜10:00は小屋で待機</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">10:37</div>
+      <div class="tl-body">
+        <div class="tl-label">高見石小屋 出発 → 下山</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">11:07〜<br>11:10</div>
+      <div class="tl-body">
+        <div class="tl-label">白駒荘・青苔荘 通過</div>
+        <div class="tl-desc">通過</div>
+      </div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-time">11:27</div>
+      <div class="tl-body">
+        <div class="tl-label">🅿️ 白駒池入口 下山完了</div>
+        <div class="tl-desc">帰路出発　→ 八峰の湯で温泉（約20分）→ 小諸ICで降りてランチへ（下記参照）</div>
+      </div>
+    </div>
+    <div class="tl-item food">
+      <div class="tl-time">11:27</div>
+      <div class="tl-body">
+        <div class="tl-label">白駒池 出発 → 八峰の湯へ</div>
+        <div class="tl-desc">一般道 約20分</div>
+      </div>
+    </div>
+    <div class="tl-item food">
+      <div class="tl-time">11:47〜<br>12:47</div>
+      <div class="tl-body">
+        <div class="tl-label">♨ 八峰の湯（ヤッホーの湯）</div>
+        <div class="tl-desc">滞在1時間　源泉掛け流し・露天風呂</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">12:47</div>
+      <div class="tl-body">
+        <div class="tl-label">八峰の湯 出発 → 小諸IC方面へ</div>
+        <div class="tl-desc">一般道 約15分</div>
+      </div>
+    </div>
+    <div class="tl-item food">
+      <div class="tl-time">13:10〜<br>14:10</div>
+      <div class="tl-body">
+        <div class="tl-label">🍜 小諸でランチ（下記参照）</div>
+        <div class="tl-desc">
+          小諸IC付近（丁子庵など）　滞在1時間<br>
+          ランチ後、小諸ICから乗車 → 上信越道 → 藤岡JCT → 北関東道 → 宇都宮JCT → 東北道 → 郡山 → 仙台
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">14:15</div>
+      <div class="tl-body">
+        <div class="tl-label">小諸IC 乗車 → 帰路へ</div>
+        <div class="tl-desc">上信越道 → 藤岡JCT → 北関東道 → 宇都宮JCT → 東北道　約2時間40分</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">16:55〜<br>17:30</div>
+      <div class="tl-body">
+        <div class="tl-label">郡山 ── 2名を降ろす</div>
+        <div class="tl-desc">3連休最終日・渋滞注意（早めに出発が吉）</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">18:10〜<br>18:30</div>
+      <div class="tl-body">
+        <div class="tl-label">仙台 帰着</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 帰路ランチ -->
+  <div class="section-title">帰路ランチ ── 小諸ICで降りる（白駒池から約30分）</div>
+
+  <p style="font-size:13px; color:var(--sub); margin-bottom:16px;">小諸は「くるみそば発祥の地」として知られ、老舗そば店が多い。ルート上の上信越道・小諸ICで降りてすぐ。下山後12:30〜13:00の到着でランチタイムにぴったり。</p>
+
+  <div class="lunch-grid">
+    <div class="lunch-card rec">
+      <span class="lunch-badge badge-rec">★ 第1候補</span>
+      <div class="lunch-name">そば蔵 丁子庵（ちょうじあん）</div>
+      <div class="lunch-detail">
+        1808年創業、北国街道小諸宿の穀物問屋が起源。総欅造りの趣ある土蔵を店舗として使用。自家製粉した霧下そばを小諸の硬水で練ったコシとキレのある蕎麦が評判。名物の「くるみそば」はここが発祥のひとつ。<br><br>
+        📍 小諸市本町2-1-3　小諸ICから車約5分<br>
+        🕐 11:00〜18:30 LO　定休日なし（12〜3月は火・水休）<br>
+        🅿️ 駐車場15台　カード・PayPay可
+      </div>
+      <div style="margin-top:10px;">
+        <a class="card-link" href="https://choujian.jp/" target="_blank" rel="noopener">公式サイト ↗</a>
+        <a class="card-link" href="https://maps.google.com/?q=そば蔵丁子庵小諸" target="_blank" rel="noopener">Google マップ ↗</a>
+      </div>
+    </div>
+    <div class="lunch-card alt">
+      <span class="lunch-badge badge-alt">第2候補</span>
+      <div class="lunch-name">草笛 小諸本店</div>
+      <div class="lunch-detail">
+        佐久・小諸エリアで絶大な人気を誇るそば店。ボリュームのある盛り蕎麦と天ぷらが好評。口コミ評価が高く、地元民・観光客ともに支持される定番店。<br><br>
+        📍 小諸市本町2丁目　小諸ICから車約5分<br>
+        🕐 11:00〜売り切れ次第終了（早めに入ること）<br>
+        🅿️ あり
+      </div>
+      <div style="margin-top:10px;">
+        <a class="card-link" href="https://maps.google.com/?q=草笛小諸本店" target="_blank" rel="noopener">Google マップ ↗</a>
+      </div>
+    </div>
+    <div class="lunch-card alt">
+      <span class="lunch-badge badge-alt">第3候補</span>
+      <div class="lunch-name">はりこし亭（中棚荘）</div>
+      <div class="lunch-detail">
+        小諸城址・懐古園のほど近く、中棚荘に隣接する古民家の食事処。自家農園で栽培したそばを使った手打ち蕎麦が香り豊か。島崎藤村ゆかりの温泉宿と一体になっており、<strong>食後にそのまま日帰り温泉も入れる</strong>のが最大の強み。下山後の疲れを癒す温泉とそばのセットとして他の2候補にないメリットがある。<br><br>
+        📍 小諸市古城乙1210　小諸ICから車約15分<br>
+        🕐 昼 11:30〜14:00 LO　水曜定休・不定休あり<br>
+        ♨ 日帰り入浴 11:30〜15:00（土日祝14:00最終受付）<br>
+        🅿️ あり
+      </div>
+      <div style="margin-top:10px;">
+        <a class="card-link" href="https://maps.google.com/?q=はりこし亭小諸中棚荘" target="_blank" rel="noopener">Google マップ ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="notice" style="margin-top:12px;">⚠️ 3連休最終日の月曜昼は混雑が予想されます。<strong>12:00〜12:30の早めの到着</strong>を狙うこと。草笛は人気が高く売り切れ閉店になる場合があるため確実性では丁子庵が優位。はりこし亭は温泉とセットで使えるが水曜定休・不定休あり、事前に要確認（TEL: 0267-22-1511）。</div>
+
+  <!-- 下山後温泉 -->
+  <div class="section-title">下山後の温泉 ── 登山口から最寄り</div>
+
+  <div class="card" style="border-top: 3px solid #5577aa;">
+    <div class="card-title">♨ 北八ヶ岳松原湖温泉 八峰の湯（ヤッホーの湯）</div>
+    <div class="card-meta">
+      <div class="card-meta-item"><div class="card-meta-key">白駒池駐車場から</div>車で約20分（国道299号→県道480号）</div>
+      <div class="card-meta-item"><div class="card-meta-key">小諸ICから</div>車で約25分（帰路途中に立ち寄り可）</div>
+      <div class="card-meta-item"><div class="card-meta-key">料金</div>大人700円（平日600円）／子ども300円</div>
+      <div class="card-meta-item"><div class="card-meta-key">営業時間</div>10:00〜21:00（最終受付20:00）</div>
+      <div class="card-meta-item"><div class="card-meta-key">定休日</div>不定休（要確認）</div>
+      <div class="card-meta-item"><div class="card-meta-key">駐車場</div>100台</div>
+      <div class="card-meta-item"><div class="card-meta-key">泉質</div>ナトリウム・マグネシウム・カルシウム―炭酸水素塩温泉（源泉掛け流し）</div>
+      <div class="card-meta-item"><div class="card-meta-key">施設</div>内湯・露天風呂・遠赤サウナ・岩盤浴・食事処あり</div>
+    </div>
+    <div style="font-size:13px; color:var(--sub); margin-top:12px; line-height:1.7;">
+      標高1,270mに位置する町営日帰り温泉。八ヶ岳連峰を一望できる露天風呂が自慢。内湯は源泉掛け流し。筋肉痛・疲労回復に効く泉質で、登山後にぴったり。食事処では小海町のソウルフード「ソースカツ丼」も食べられるため、<strong>温泉＋ランチをここで完結させる選択肢にもなる。</strong>小諸ICへの帰路にも近く、立ち寄りやすい。
+    </div>
+    <div class="card-links">
+      <a class="card-link" href="https://www.yahho-onsen.jp/" target="_blank" rel="noopener">公式サイト ↗</a>
+      <a class="card-link" href="https://maps.google.com/?q=八峰の湯+小海町" target="_blank" rel="noopener">Google マップ ↗</a>
+    </div>
+  </div>
+
+  <div class="notice">💡 <strong>温泉＋ランチの最短ルート（推奨）：</strong>白駒池 → 八峰の湯（20分）で温泉＆ソースカツ丼 → そのまま小諸IC方面で帰路。小諸の蕎麦屋に寄る場合は八峰の湯をパスして小諸ICで降りる。どちらでも帰路のロスは最小限。</div>
+
+  <!-- 駐車場 -->
+  <div class="section-title">駐車場</div>
+  <div class="parking-grid">
+    <div class="parking-card primary">
+      <div class="parking-name">🅿️ 第1駐車場（優先）</div>
+      <div class="parking-row"><span class="parking-key">台数</span><span>80台</span></div>
+      <div class="parking-row"><span class="parking-key">料金</span><span>600円 / 日</span></div>
+      <div class="parking-row"><span class="parking-key">トイレ</span><span>あり（協力金50円）</span></div>
+      <div class="parking-row"><span class="parking-key">入場</span><span>24時間可</span></div>
+      <div class="parking-row"><span class="parking-key">ライブカメラ</span><span>あり（5分更新）</span></div>
+    </div>
+    <div class="parking-card secondary">
+      <div class="parking-name">🅿️ 第2駐車場（満車時）</div>
+      <div class="parking-row"><span class="parking-key">台数</span><span>100台</span></div>
+      <div class="parking-row"><span class="parking-key">料金</span><span>600円 / 日</span></div>
+      <div class="parking-row"><span class="parking-key">備考</span><span>混雑時に開放</span></div>
+      <div class="parking-row"><span class="parking-key">合計</span><span>第1＋第2で180台</span></div>
+    </div>
+  </div>
+  <div class="notice" style="margin-top:12px;">⚠️ 3連休の日曜は早朝から激混み。第1・第2合計180台あるが<strong>7時台には満車になる可能性が高い。</strong>今回は4:20頃の到着を目指しており、早着による確保が前提。出発前夜に必ずライブカメラで混雑状況を確認すること。</div>
+
+  <!-- 施設情報 -->
+  <div class="section-title">施設情報</div>
+  <div class="card">
+    <div class="card-title">🏠 黒百合ヒュッテ</div>
+    <div class="card-meta">
+      <div class="card-meta-item"><div class="card-meta-key">宿泊料金</div>1泊2食 11,000円 / 人</div>
+      <div class="card-meta-item"><div class="card-meta-key">素泊まり</div>7,000円 / 人</div>
+      <div class="card-meta-item"><div class="card-meta-key">標高</div>2,410m</div>
+      <div class="card-meta-item"><div class="card-meta-key">TEL</div>090-2533-0620</div>
+      <div class="card-meta-item"><div class="card-meta-key">ランチ営業</div>10:00〜14:00（要確認）</div>
+      <div class="card-meta-item"><div class="card-meta-key">予約</div>今すぐ電話を</div>
+    </div>
+    <div class="notice">⚠️ ランチ営業は2023年7月から休止中の報告あり。<strong>予約時に再開状況を必ず電話確認。</strong>3連休週末は即満室 → <strong>今すぐ予約必須。</strong></div>
+    <div class="card-links">
+      <a class="card-link" href="https://www.kuroyurihyutte.com/" target="_blank" rel="noopener">公式サイト ↗</a>
+      <a class="card-link" href="https://maps.google.com/?q=黒百合ヒュッテ" target="_blank" rel="noopener">Google マップ ↗</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🏠 高見石小屋</div>
+    <div class="card-meta">
+      <div class="card-meta-item"><div class="card-meta-key">名物</div>揚げパン（5種）1,100円</div>
+      <div class="card-meta-item"><div class="card-meta-key">軽食販売</div>10:00〜14:00</div>
+      <div class="card-meta-item"><div class="card-meta-key">標高</div>約2,250m</div>
+      <div class="card-meta-item"><div class="card-meta-key">高見石</div>白駒池を一望の展望岩</div>
+    </div>
+    <div class="card-links">
+      <a class="card-link" href="https://takamiiwa.com/" target="_blank" rel="noopener">公式サイト ↗</a>
+      <a class="card-link" href="https://maps.google.com/?q=高見石小屋" target="_blank" rel="noopener">Google マップ ↗</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🅿️ 白駒の池入口有料駐車場</div>
+    <div class="card-meta">
+      <div class="card-meta-item"><div class="card-meta-key">収容</div>第1: 80台 ／ 第2: 100台</div>
+      <div class="card-meta-item"><div class="card-meta-key">料金</div>600円 / 日</div>
+      <div class="card-meta-item"><div class="card-meta-key">標高</div>2,090m</div>
+      <div class="card-meta-item"><div class="card-meta-key">営業</div>4月下旬〜11月上旬</div>
+    </div>
+    <div class="card-links">
+      <a class="card-link" href="http://hokubu-f.jp/shirakomanoike/" target="_blank" rel="noopener">ライブカメラ ↗</a>
+      <a class="card-link" href="https://maps.google.com/?q=白駒池入口駐車場" target="_blank" rel="noopener">Google マップ ↗</a>
+    </div>
+  </div>
+
+  <!-- 費用 -->
+  <div class="section-title">費用（1人あたり）</div>
+  <div class="notice red" style="margin-bottom:16px;">🚫 <strong>7月19〜21日は3連休のため往路・復路とも休日割引は適用除外。</strong>往路は深夜割引（0〜4時走行分30%）のみ。復路は割引なし・通常料金。</div>
+
+  <div class="cost-grid">
+    <div class="cost-card hal">
+      <div class="cost-who">HAL</div>
+      <div class="cost-amount">¥30,910</div>
+      <div class="cost-note">単独負担分（仙台⇔郡山）を含む</div>
+    </div>
+    <div class="cost-card member">
+      <div class="cost-who">同行者（各自）</div>
+      <div class="cost-amount">¥23,500</div>
+      <div class="cost-note">割り勘分のみ</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:32px;">① 割り勘内訳（3名均等・郡山起点）</div>
+  <table>
+    <thead><tr><th>項目</th><th>計算根拠</th><th style="text-align:right;">総額</th><th style="text-align:right;">÷3 / 人</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>高速代 往路<br><div class="td-label">郡山IC → 八千穂高原IC　北関東道経由　深夜割引30%</div></td>
+        <td>ETC 6,570円 × 0.70</td>
+        <td class="td-right">4,600円</td>
+        <td class="td-right">1,533円</td>
+      </tr>
+      <tr class="td-nodiscount">
+        <td>高速代 復路<br><div class="td-label">八千穂高原IC → 郡山IC　北関東道経由　割引なし（3連休除外）</div></td>
+        <td>ETC 6,570円（割引なし）</td>
+        <td class="td-right">6,570円</td>
+        <td class="td-right">2,190円</td>
+      </tr>
+      <tr>
+        <td>ガソリン代<br><div class="td-label">郡山⇔八千穂高原＋一般道（温泉・ランチ含む）計 約698km</div></td>
+        <td>698km ÷ 20km/L × 170円</td>
+        <td class="td-right">5,930円</td>
+        <td class="td-right">1,977円</td>
+      </tr>
+      <tr>
+        <td>駐車場<br><div class="td-label">白駒池 600円 × 2日</div></td>
+        <td>600円 × 2</td>
+        <td class="td-right">1,200円</td>
+        <td class="td-right">400円</td>
+      </tr>
+      <tr class="td-total">
+        <td colspan="2"><strong>① 割り勘総額 ÷ 3 ＝ 1人あたり</strong></td>
+        <td class="td-right"><strong>18,300円</strong></td>
+        <td class="td-right"><strong>6,100円</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title" style="margin-top:32px;">② HAL単独負担（仙台 ⇔ 郡山）</div>
+  <table>
+    <thead><tr><th>項目</th><th>計算根拠</th><th style="text-align:right;">金額</th></tr></thead>
+    <tbody>
+      <tr class="td-hal">
+        <td>高速代 往路<br><div class="td-label">仙台宮城IC → 郡山IC　深夜割引30%</div></td>
+        <td>3,200円 × 0.70</td>
+        <td class="td-right">2,240円</td>
+      </tr>
+      <tr class="td-hal td-nodiscount" id="fukuro">
+        <td>高速代 復路<br><div class="td-label">郡山IC → 仙台宮城IC　割引なし（3連休除外）</div></td>
+        <td>ETC 6,570円（割引なし）</td>
+        <td class="td-right">3,200円</td>
+      </tr>
+      <tr class="td-hal">
+        <td>ガソリン代<br><div class="td-label">仙台宮城⇔郡山 往復 約232km（一般道含む）</div></td>
+        <td>232km ÷ 20km/L × 170円</td>
+        <td class="td-right">1,970円</td>
+      </tr>
+      <tr class="td-total td-hal">
+        <td colspan="2"><strong>② HAL単独負担 合計</strong></td>
+        <td class="td-right"><strong>7,410円</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title" style="margin-top:32px;">③ 全員共通（各自負担）</div>
+  <table>
+    <thead><tr><th>項目</th><th style="text-align:right;">金額</th></tr></thead>
+    <tbody>
+      <tr><td>黒百合ヒュッテ 1泊2食</td><td class="td-right">11,000円</td></tr>
+      <tr><td>ビーフシチューセット（1日目ランチ）</td><td class="td-right">1,600円</td></tr>
+      <tr><td>揚げパンセット（2日目・高見石小屋）</td><td class="td-right">1,100円</td></tr>
+      <tr><td>帰路ランチ・小諸 信州そば（目安）</td><td class="td-right">1,500円</td></tr>
+      <tr><td>下山後温泉・八峰の湯（大人）</td><td class="td-right">700円</td></tr>
+      <tr><td>行動食・飲料（目安）</td><td class="td-right">1,500円</td></tr>
+      <tr class="td-total"><td><strong>③ 各自負担 合計</strong></td><td class="td-right"><strong>17,400円</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title" style="margin-top:32px;">最終合計</div>
+  <table>
+    <thead><tr><th>対象</th><th>内訳</th><th style="text-align:right;">合計</th></tr></thead>
+    <tbody>
+      <tr class="td-hal"><td><strong>HAL</strong></td><td>① 6,100円 ＋ ② 7,410円 ＋ ③ 17,400円</td><td class="td-right"><strong>30,910円</strong></td></tr>
+      <tr><td><strong>同行者 各自</strong></td><td>① 6,100円 ＋ ③ 17,400円</td><td class="td-right"><strong>23,500円</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="notice" style="margin-top:12px;">💡 高速料金は実測値（郡山↔八千穂高原ETC通常6,570円・深夜割引4,600円）を使用。最終確認は<a href="https://www.driveplaza.com/dp/SearchTop" target="_blank">ドラぷら</a>で出発日・時刻を指定して必ず確認してください。</div>
+
+  <!-- 必要携行品 -->
+  <div class="section-title">必要携行品</div>
+
+  <div class="card">
+    <div class="card-title">🎒 アタックザック</div>
+    <div class="card-meta">
+      <div class="card-meta-item"><div class="card-meta-key">使用区間</div>黒百合ヒュッテ → 天狗岳（往復）</div>
+      <div class="card-meta-item"><div class="card-meta-key">タイミング</div>1日目 11:46出発時にヒュッテで荷物を預け、アタックザックに行動食・水・レインウェアなど必要最小限を移して出発</div>
+    </div>
+    <div style="font-size:13px; color:var(--sub); margin-top:12px; line-height:1.7;">
+      黒百合ヒュッテに大荷物を預けて身軽に天狗岳を目指す。アタックザックには行動食・水（500ml×2本程度）・レインウェア・防寒着・ヘッドライト・救急セットなど最小限を入れること。岩場の多い天狗の奥庭ルートはザックが軽いほど楽になる。
+    </div>
+  </div>
+
+
+  <!-- リンク集 -->
+  <div class="section-title">リンク集</div>
+  <div class="links-grid">
+    <a class="link-card" href="https://www.kuroyurihyutte.com/" target="_blank" rel="noopener">
+      <div class="link-card-title">黒百合ヒュッテ 公式</div>
+      <div class="link-card-desc">予約・料金・アクセス情報</div>
+      <div class="link-card-url">kuroyurihyutte.com</div>
+    </a>
+    <a class="link-card" href="https://takamiiwa.com/" target="_blank" rel="noopener">
+      <div class="link-card-title">高見石小屋 公式</div>
+      <div class="link-card-desc">揚げパン・営業情報（要確認）</div>
+      <div class="link-card-url">takamiiwa.com</div>
+    </a>
+    <a class="link-card" href="https://choujian.jp/" target="_blank" rel="noopener">
+      <div class="link-card-title">そば蔵 丁子庵（帰路ランチ第1候補）</div>
+      <div class="link-card-desc">小諸IC車5分・1808年創業のくるみそば老舗</div>
+      <div class="link-card-url">choujian.jp</div>
+    </a>
+    <a class="link-card" href="http://hokubu-f.jp/shirakomanoike/" target="_blank" rel="noopener">
+      <div class="link-card-title">白駒池駐車場 ライブカメラ</div>
+      <div class="link-card-desc">5分毎に更新。出発前夜に必ず確認</div>
+      <div class="link-card-url">hokubu-f.jp</div>
+    </a>
+    <a class="link-card" href="https://tenki.jp/mountain/detail-271.html" target="_blank" rel="noopener">
+      <div class="link-card-title">tenki.jp 山の天気 天狗岳</div>
+      <div class="link-card-desc">登山前日・当日朝に必ず確認</div>
+      <div class="link-card-url">tenki.jp</div>
+    </a>
+    <a class="link-card" href="https://www.yamatenki.co.jp/detail?id=271" target="_blank" rel="noopener">
+      <div class="link-card-title">ヤマテン 天狗岳</div>
+      <div class="link-card-desc">雷リスク含む詳細な山岳天気予報</div>
+      <div class="link-card-url">yamatenki.co.jp</div>
+    </a>
+    <a class="link-card" href="https://tozanguchinavi.com/trailhead/trailhead-1964" target="_blank" rel="noopener">
+      <div class="link-card-title">白駒池入口 登山口情報</div>
+      <div class="link-card-desc">駐車場詳細・アクセス</div>
+      <div class="link-card-url">tozanguchinavi.com</div>
+    </a>
+    <a class="link-card" href="https://www.driveplaza.com/dp/SearchTop" target="_blank" rel="noopener">
+      <div class="link-card-title">ドラぷら 高速料金検索</div>
+      <div class="link-card-desc">NEXCO東日本 深夜割引適用料金確認</div>
+      <div class="link-card-url">driveplaza.com</div>
+    </a>
+    <a class="link-card" href="https://www.driveplaza.com/etc/dis/etc_dis_night/" target="_blank" rel="noopener">
+      <div class="link-card-title">深夜割引 制度説明</div>
+      <div class="link-card-desc">0〜4時走行で30%割引。制度詳細はこちら</div>
+      <div class="link-card-url">driveplaza.com</div>
+    </a>
+    <a class="link-card" href="https://www.e-nexco.co.jp/pressroom/head_office/2025/0314/00014746.html" target="_blank" rel="noopener">
+      <div class="link-card-title">休日割引 適用除外日（NEXCO東日本）</div>
+      <div class="link-card-desc">2025年度より3連休も除外</div>
+      <div class="link-card-url">e-nexco.co.jp</div>
+    </a>
+    <a class="link-card" href="https://www.yahho-onsen.jp/" target="_blank" rel="noopener"><div class="link-card-title">八峰の湯（ヤッホーの湯）</div><div class="link-card-desc">白駒池から車20分・源泉掛け流し・食事処あり</div><div class="link-card-url">yahho-onsen.jp</div></a>
+    <a class="link-card" href="https://yamap.com/plans/code/8aImqgwzsghw7bY1ERs5FvOycrgYHSXUWg_GrYer3lhB9_yFX48ClUx3ZALkKOemNq4" target="_blank" rel="noopener">
+      <div class="link-card-title">YAMAP 登山計画</div>
+      <div class="link-card-desc">ルート・登山届はこちらから</div>
+      <div class="link-card-url">yamap.com</div>
+    </a>
+    <a class="link-card" href="https://www.pref.nagano.lg.jp/sakuchi/sakuchi-shokan/shirakoma.html" target="_blank" rel="noopener">
+      <div class="link-card-title">白駒池 交通対策・シャトルバス</div>
+      <div class="link-card-desc">長野県公式。7/20はシャトル2台運行日</div>
+      <div class="link-card-url">pref.nagano.lg.jp</div>
+    </a>
+    <a class="link-card" href="https://halab18.github.io/kuroyuri-plan/" target="_blank" rel="noopener">
+      <div class="link-card-title">このプランページ（GitHub Pages）</div>
+      <div class="link-card-desc">メンバーへの共有はこちらのURLで</div>
+      <div class="link-card-url">halab18.github.io/kuroyuri-plan/</div>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  黒百合ヒュッテ登山プラン 2025.7.20-21 ／ 情報は2025年6月時点。各施設・割引制度の最新情報は必ず公式サイトでご確認ください。<br>
+  公開URL: <a href="https://halab18.github.io/kuroyuri-plan/" style="color:var(--sub);">https://halab18.github.io/kuroyuri-plan/</a>
+</footer>
+
+</body>
+</html>
