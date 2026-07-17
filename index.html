@@ -2,8 +2,17 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>黒百合ヒュッテ登山プラン 2025.7.20-21</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1e2d4a">
+<meta name="apple-mobile-web-app-title" content="黒百合ヒュッテ">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
   :root {
     --bg: #f7f5f0; --surface: #ffffff; --border: #ddd8ce; --text: #1a1a18; --sub: #6b6860;
@@ -14,7 +23,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 15px; line-height: 1.7; }
-  header { background: var(--night); color: #fff; padding: 48px 24px 40px; text-align: center; }
+  header { background: var(--night); color: #fff; padding: calc(48px + env(safe-area-inset-top, 0px)) 24px 40px; text-align: center; }
   header .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #8fa8c8; margin-bottom: 12px; }
   header h1 { font-size: clamp(24px, 5vw, 40px); font-weight: 700; line-height: 1.25; margin-bottom: 10px; }
   header .sub { font-size: 14px; color: #a0b4cc; margin-bottom: 24px; }
